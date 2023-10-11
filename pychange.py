@@ -24,7 +24,7 @@ class Window(QMainWindow, Ui_MainWindow):
         super().__init__(parent)
         self.setupUi(self)
         self.connectSignalsSlots()
-        model = self.update_table()
+        model = self.initialize_table()
         self.proxy = QtCore.QSortFilterProxyModel(self)
         self.proxy.setSourceModel(model)
         self.proxy.setFilterKeyColumn(1)
@@ -36,7 +36,7 @@ class Window(QMainWindow, Ui_MainWindow):
     def on_apply_search(self):
         self.proxy.setFilterRegExp(self.line_search.text())
 
-    def update_table(self):
+    def initialize_table(self):
         cursor = conn.cursor()
         cursor.execute(
             "SELECT ISBN, author, title, lang, year, buy_price, sell_price, row, amount FROM inventory"
@@ -76,31 +76,155 @@ class Window(QMainWindow, Ui_MainWindow):
             model.setItem(i, 5, item_buy_price)
             model.setItem(i, 6, item_sell_price)
             model.setItem(i, 7, item_row)
+            model.setItem(i, 8, item_amount)    
+        return model
+    
+    def update_table(self):
+        cursor = conn.cursor()
+        cursor.execute(
+            "SELECT ISBN, author, title, lang, year, buy_price, sell_price, row, amount FROM inventory"
+        )
+        inventory = cursor.fetchall()
+        if len(inventory) == 0:
+            model = QtGui.QStandardItemModel()
+            model.setHorizontalHeaderLabels(
+                [
+                    "ISBN",
+                    "Författare",
+                    "Titel",
+                    "Språk",
+                    "År",
+                    "Inköpspris",
+                    "Säljpris",
+                    "Hylla",
+                    "Antal i lager",
+                ]
+            )
+            return model
+        model = QtGui.QStandardItemModel()
+        model.setHorizontalHeaderLabels(
+            [
+                "ISBN",
+                "Författare",
+                "Titel",
+                "Språk",
+                "År",
+                "Inköpspris",
+                "Säljpris",
+                "Hylla",
+                "Antal i lager",
+            ]
+        )
+        for i, (isbn, author, title, lang, year, buy_price, sell_price, row, amount) in enumerate(
+            inventory
+        ):
+            item_isbn = QtGui.QStandardItem(isbn)
+            item_author = QtGui.QStandardItem(author)
+            item_title = QtGui.QStandardItem(title)
+            item_lang = QtGui.QStandardItem(lang)
+            item_year = QtGui.QStandardItem(str(year))
+            item_buy_price = QtGui.QStandardItem(str(buy_price))
+            item_sell_price = QtGui.QStandardItem(str(sell_price))
+            item_row = QtGui.QStandardItem(row)
+            item_amount = QtGui.QStandardItem(str(amount))
+            model.setItem(i, 0, item_isbn)
+            model.setItem(i, 1, item_author)
+            model.setItem(i, 2, item_title)
+            model.setItem(i, 3, item_lang)
+            model.setItem(i, 4, item_year)
+            model.setItem(i, 5, item_buy_price)
+            model.setItem(i, 6, item_sell_price)
+            model.setItem(i, 7, item_row)
             model.setItem(i, 8, item_amount)
-            # self.table_inventory.show()
-
+            self.proxy.setSourceModel(model)
+            self.table_inventory.show()
         return model
 
     def connectSignalsSlots(self):
         self.action_open_dialog.triggered.connect(self.open_dialog)
+        self.action_add_one.triggered.connect(self.add_one)
         self.action_sell_book.triggered.connect(self.sell_book)
         self.action_delete_book.triggered.connect(self.delete_book)
+        self.action_delete_one.triggered.connect(self.delete_one)
         self.action_edit_book.triggered.connect(self.edit_book)
         self.action_search.triggered.connect(self.search)
+        self.action_toggle.triggered.connect(self.toggle)
+
+    def toggle(self):
+        self.button_sell_book.setEnabled(True)
 
     def sell_book(self):
-        pass
+        rows = sorted(set(index.row() for index in
+                          self.table_inventory.selectedIndexes()))
+        cursor = conn.cursor()
+        for row in rows:
+            model = self.table_inventory.model()
+            isbn = model.sourceModel().item(row, ).text()
+            cursor.execute(
+                "UPDATE inventory SET amount = amount -1 WHERE ISBN = ?",
+                (isbn,),
+            )
+            cursor.execute(
+                "INSERT INTO sales (ISBN, date, price, seller) VALUES (?,?,?,?)",
+                (
+                    isbn,
+                    datetime.now(),
+                    self.line_sell_price.text(),
+                    self.line_seller.text(),
+                ),
+            )
+        conn.commit()
+        self.update_table()
 
     def delete_book(self):
-        pass
+        rows = sorted(set(index.row() for index in
+                          self.table_inventory.selectedIndexes()))
+        cursor = conn.cursor()
+        for row in rows:
+            model = self.table_inventory.model()
+            isbn = model.sourceModel().item(row, ).text()
+            cursor.execute(
+                "DELETE FROM inventory WHERE ISBN = ?",
+                (isbn,),
+            )
+        conn.commit()
+        self.update_table()
+
+    def add_one(self):
+        rows = sorted(set(index.row() for index in
+                          self.table_inventory.selectedIndexes()))
+        cursor = conn.cursor()
+        for row in rows:
+            model = self.table_inventory.model()
+            isbn = model.sourceModel().item(row, ).text()
+            cursor.execute(
+                "UPDATE inventory SET amount = amount + 1 WHERE ISBN = ?",
+                (isbn,),
+            )
+        conn.commit()
+        self.update_table()
+
+    def delete_one(self):
+        rows = sorted(set(index.row() for index in
+                          self.table_inventory.selectedIndexes()))
+        cursor = conn.cursor()
+        for row in rows:
+            model = self.table_inventory.model()
+            isbn = model.sourceModel().item(row, ).text()
+            cursor.execute(
+                "UPDATE inventory SET amount = amount -1 WHERE ISBN = ?",
+                (isbn,),
+            )
+        conn.commit()
+        self.update_table()
 
     def edit_book(self):
         pass
 
     def open_dialog(self):
-        dialog = BookDialog(self)
-        dialog.update_table.connect(self.update_table)
-        dialog.exec()
+        self.dialog = BookDialog(self)
+        self.dialog.update_table.connect(self.update_table)
+        self.dialog.exec()
 
     def confirm_add(self):
         pass
@@ -124,7 +248,7 @@ class BookDialog(QDialog, Ui_Dialog):
         self.action_toggle_sale.triggered.connect(self.toggle_sale)
 
     def close_dialog(self):
-        pass
+        self.done(0)
 
     def toggle_sale(self):
         if self.button_save.text() == "Spara":
@@ -136,18 +260,18 @@ class BookDialog(QDialog, Ui_Dialog):
     def lookup_book(self):
         cur = conn.cursor()
         isbn = isbnlib.canonical(self.line_isbn.text())
-        cur.execute("SELECT * FROM inventory WHERE ISBN=?", (isbn,))
+        cur.execute("SELECT title, author, lang, year, buy_price, sell_price, row, amount, cover FROM inventory WHERE ISBN=?", (isbn,))
         result = cur.fetchone()
         print(result)
         if result is not None:
-            self.line_title.setText(result[1])
-            self.line_author.setText(result[2])
-            self.line_language.setText(result[3])
-            self.line_year.setText(str(result[4]))
-            self.line_buy_price.setText(str(result[5]))
-            self.line_sell_price.setText(str(result[6]))
-            self.line_row.setText(str(result[7]))
-            self.line_amount.setText(str(result[9]))
+            self.line_title.setText(result[0])
+            self.line_author.setText(result[1])
+            self.line_language.setText(result[2])
+            self.line_year.setText(str(result[3]))
+            self.line_buy_price.setText(str(result[4]))
+            self.line_sell_price.setText(str(result[5]))
+            self.line_row.setText(str(result[6]))
+            self.line_amount.setText(str(result[7]))
             if result[8] == "no_cover.png":
                 image = QImage()
                 self.label_cover.setPixmap(QPixmap("no_cover.png"))
@@ -185,7 +309,10 @@ class BookDialog(QDialog, Ui_Dialog):
         self.line_sell_price.setText("")
         self.line_row.setText("")
         self.line_amount.setText("")
-
+        self.line_isbn.setFocus()
+        self.label_cover.setPixmap(QPixmap("no_cover.png"))
+        self.label_cover.show()
+        
     def add_book(self):
         if self.button_save.text() == "Spara":
             cursor = conn.cursor()
@@ -218,7 +345,10 @@ class BookDialog(QDialog, Ui_Dialog):
             print(sql)
             cursor.execute(sql, list(book.values()))
             conn.commit()
-            self.line_amount.setText(str(int(self.line_amount.text()) + 1))
+            if self.line_amount.text() is not None:
+                self.line_amount.setText(str(int(self.line_amount.text()) + 1))
+            else:
+                self.line_amount.setText("1")
             self.update_table.emit(True)
             self.clear_form()
         elif self.button_save.text() == "Sälj":
@@ -228,7 +358,7 @@ class BookDialog(QDialog, Ui_Dialog):
                 (self.line_isbn.text(),),
             )
             cursor.execute(
-                "INSERT INTO sales VALUES (?,?,?,?)",
+                "INSERT INTO sales (ISBN, date, price, seller) VALUES (?,?,?,?)",
                 (
                     self.line_isbn.text(),
                     datetime.now(),

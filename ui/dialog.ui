@@ -14,6 +14,105 @@
    <string>Dialog</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <item row="9" column="1">
+    <widget class="QLineEdit" name="line_row">
+     <property name="focusPolicy">
+      <enum>Qt::StrongFocus</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QLabel" name="label_author">
+     <property name="text">
+      <string>Författare:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="0">
+    <widget class="QLabel" name="label_row">
+     <property name="text">
+      <string>Hylla:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="1">
+    <widget class="QLineEdit" name="line_sell_price">
+     <property name="focusPolicy">
+      <enum>Qt::StrongFocus</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="11" column="0">
+    <widget class="QLabel" name="label_amount">
+     <property name="text">
+      <string>Antal i lager:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="label_title">
+     <property name="text">
+      <string>Titel:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="15" column="1">
+    <widget class="QLabel" name="label_cover">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="10" column="1">
+    <widget class="QLineEdit" name="line_seller">
+     <property name="focusPolicy">
+      <enum>Qt::StrongFocus</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QLineEdit" name="line_isbn"/>
+   </item>
+   <item row="3" column="1">
+    <widget class="QLineEdit" name="line_title">
+     <property name="focusPolicy">
+      <enum>Qt::StrongFocus</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="16" column="0">
+    <widget class="QPushButton" name="button_close">
+     <property name="focusPolicy">
+      <enum>Qt::StrongFocus</enum>
+     </property>
+     <property name="text">
+      <string>Stäng</string>
+     </property>
+     <property name="autoDefault">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="12" column="0">
+    <widget class="QCheckBox" name="sale_toggle">
+     <property name="focusPolicy">
+      <enum>Qt::StrongFocus</enum>
+     </property>
+     <property name="text">
+      <string>Sälja</string>
+     </property>
+    </widget>
+   </item>
+   <item row="16" column="1">
+    <widget class="QPushButton" name="button_save">
+     <property name="text">
+      <string>Spara</string>
+     </property>
+     <property name="autoDefault">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
    <item row="7" column="0">
     <widget class="QLabel" name="label_buy_price">
      <property name="text">
@@ -28,56 +127,10 @@
      </property>
     </widget>
    </item>
-   <item row="5" column="1">
-    <widget class="QLineEdit" name="line_year"/>
-   </item>
    <item row="6" column="0">
     <widget class="QLabel" name="label_language">
      <property name="text">
       <string>Språk:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="9" column="1">
-    <widget class="QLineEdit" name="line_row"/>
-   </item>
-   <item row="16" column="1">
-    <widget class="QPushButton" name="button_save">
-     <property name="text">
-      <string>Spara</string>
-     </property>
-     <property name="autoDefault">
-      <bool>false</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="12" column="0">
-    <widget class="QCheckBox" name="sale_toggle">
-     <property name="text">
-      <string>Sälja</string>
-     </property>
-    </widget>
-   </item>
-   <item row="16" column="0">
-    <widget class="QPushButton" name="button_close">
-     <property name="text">
-      <string>Stäng</string>
-     </property>
-     <property name="autoDefault">
-      <bool>false</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="8" column="1">
-    <widget class="QLineEdit" name="line_sell_price"/>
-   </item>
-   <item row="6" column="1">
-    <widget class="QLineEdit" name="line_language"/>
-   </item>
-   <item row="11" column="0">
-    <widget class="QLabel" name="label_amount">
-     <property name="text">
-      <string>Antal i lager:</string>
      </property>
     </widget>
    </item>
@@ -94,13 +147,38 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="1">
-    <widget class="QLineEdit" name="line_isbn"/>
-   </item>
    <item row="8" column="0">
     <widget class="QLabel" name="label_sell_price">
      <property name="text">
       <string>Säljpris:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="1">
+    <widget class="QLineEdit" name="line_language">
+     <property name="focusPolicy">
+      <enum>Qt::StrongFocus</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="1">
+    <widget class="QLineEdit" name="line_buy_price">
+     <property name="focusPolicy">
+      <enum>Qt::StrongFocus</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="1">
+    <widget class="QLineEdit" name="line_year">
+     <property name="focusPolicy">
+      <enum>Qt::StrongFocus</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0">
+    <widget class="QLabel" name="lable_year">
+     <property name="text">
+      <string>År:</string>
      </property>
     </widget>
    </item>
@@ -112,51 +190,11 @@
     </widget>
    </item>
    <item row="4" column="1">
-    <widget class="QLineEdit" name="line_author"/>
-   </item>
-   <item row="5" column="0">
-    <widget class="QLabel" name="lable_year">
-     <property name="text">
-      <string>År:</string>
+    <widget class="QLineEdit" name="line_author">
+     <property name="focusPolicy">
+      <enum>Qt::StrongFocus</enum>
      </property>
     </widget>
-   </item>
-   <item row="3" column="1">
-    <widget class="QLineEdit" name="line_title"/>
-   </item>
-   <item row="15" column="1">
-    <widget class="QLabel" name="label_cover">
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0">
-    <widget class="QLabel" name="label_title">
-     <property name="text">
-      <string>Titel:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="7" column="1">
-    <widget class="QLineEdit" name="line_buy_price"/>
-   </item>
-   <item row="9" column="0">
-    <widget class="QLabel" name="label_row">
-     <property name="text">
-      <string>Hylla:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="0">
-    <widget class="QLabel" name="label_author">
-     <property name="text">
-      <string>Författare:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="10" column="1">
-    <widget class="QLineEdit" name="lineEdit"/>
    </item>
   </layout>
   <action name="action_lookup_book">
@@ -180,6 +218,19 @@
    </property>
   </action>
  </widget>
+ <tabstops>
+  <tabstop>line_isbn</tabstop>
+  <tabstop>line_title</tabstop>
+  <tabstop>line_author</tabstop>
+  <tabstop>line_year</tabstop>
+  <tabstop>line_language</tabstop>
+  <tabstop>line_buy_price</tabstop>
+  <tabstop>line_sell_price</tabstop>
+  <tabstop>line_row</tabstop>
+  <tabstop>line_seller</tabstop>
+  <tabstop>sale_toggle</tabstop>
+  <tabstop>button_save</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>
@@ -237,8 +288,8 @@
    <slot>toggle_sale()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>22</x>
-     <y>351</y>
+     <x>31</x>
+     <y>311</y>
     </hint>
     <hint type="destinationlabel">
      <x>25</x>
