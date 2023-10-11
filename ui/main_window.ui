@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1168</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="central_widget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="1" column="3">
+     <widget class="QGroupBox" name="group_right">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>120</width>
+        <height>65</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>100</width>
+        <height>73</height>
+       </size>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <widget class="QPushButton" name="button_open_dialog">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>30</y>
+         <width>117</width>
+         <height>34</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>117</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Lägg till ny/Sälj</string>
+       </property>
+      </widget>
+     </widget>
+    </item>
+    <item row="3" column="2">
+     <widget class="QGroupBox" name="group_below">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>35</height>
+       </size>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <widget class="QPushButton" name="button_delete_book">
+       <property name="geometry">
+        <rect>
+         <x>790</x>
+         <y>0</y>
+         <width>117</width>
+         <height>34</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>110</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>117</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Ta bort markerad</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="button_sell_book">
+       <property name="geometry">
+        <rect>
+         <x>910</x>
+         <y>0</y>
+         <width>110</width>
+         <height>34</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>110</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>84</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Sälj markerad</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="button_edit">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>141</width>
+         <height>34</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Redigera markerad</string>
+       </property>
+      </widget>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QTableView" name="table_inventory">
+      <property name="sortingEnabled">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QLineEdit" name="line_search">
+      <property name="placeholderText">
+       <string>Sök</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menu_bar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1168</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_file">
+    <property name="title">
+     <string>File</string>
+    </property>
+   </widget>
+   <addaction name="menu_file"/>
+  </widget>
+  <widget class="QStatusBar" name="status_bar"/>
+  <action name="action_open_dialog">
+   <property name="text">
+    <string>Open dialog</string>
+   </property>
+  </action>
+  <action name="action_search">
+   <property name="text">
+    <string>search</string>
+   </property>
+  </action>
+  <action name="action_delete_book">
+   <property name="text">
+    <string>delete_book</string>
+   </property>
+  </action>
+  <action name="action_edit_book">
+   <property name="text">
+    <string>edit_book</string>
+   </property>
+  </action>
+  <action name="action_sell_book">
+   <property name="text">
+    <string>sell_book</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>button_edit</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>edit_book()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>92</x>
+     <y>741</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>213</x>
+     <y>774</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_delete_book</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>delete_book()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>847</x>
+     <y>746</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>831</x>
+     <y>773</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_sell_book</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>sell_book()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>976</x>
+     <y>747</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>976</x>
+     <y>771</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_open_dialog</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>open_dialog()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1095</x>
+     <y>411</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1103</x>
+     <y>482</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>open_dialog()</slot>
+  <slot>edit_book()</slot>
+  <slot>delete_book()</slot>
+  <slot>add_book()</slot>
+  <slot>search()</slot>
+  <slot>sell_book()</slot>
+ </slots>
+</ui>

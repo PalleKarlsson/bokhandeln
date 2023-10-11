@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>599</width>
+    <height>614</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="7" column="0">
+    <widget class="QLabel" name="label_buy_price">
+     <property name="text">
+      <string>Inköpspris:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_isbn">
+     <property name="text">
+      <string>ISBN:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="1">
+    <widget class="QLineEdit" name="line_year"/>
+   </item>
+   <item row="6" column="0">
+    <widget class="QLabel" name="label_language">
+     <property name="text">
+      <string>Språk:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="1">
+    <widget class="QLineEdit" name="line_row"/>
+   </item>
+   <item row="16" column="1">
+    <widget class="QPushButton" name="button_save">
+     <property name="text">
+      <string>Spara</string>
+     </property>
+     <property name="autoDefault">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="12" column="0">
+    <widget class="QCheckBox" name="sale_toggle">
+     <property name="text">
+      <string>Sälja</string>
+     </property>
+    </widget>
+   </item>
+   <item row="16" column="0">
+    <widget class="QPushButton" name="button_close">
+     <property name="text">
+      <string>Stäng</string>
+     </property>
+     <property name="autoDefault">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="1">
+    <widget class="QLineEdit" name="line_sell_price"/>
+   </item>
+   <item row="6" column="1">
+    <widget class="QLineEdit" name="line_language"/>
+   </item>
+   <item row="11" column="0">
+    <widget class="QLabel" name="label_amount">
+     <property name="text">
+      <string>Antal i lager:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="11" column="1">
+    <widget class="QLabel" name="line_amount">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QLineEdit" name="line_isbn"/>
+   </item>
+   <item row="8" column="0">
+    <widget class="QLabel" name="label_sell_price">
+     <property name="text">
+      <string>Säljpris:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="10" column="0">
+    <widget class="QLabel" name="label_seller">
+     <property name="text">
+      <string>Säljare:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1">
+    <widget class="QLineEdit" name="line_author"/>
+   </item>
+   <item row="5" column="0">
+    <widget class="QLabel" name="lable_year">
+     <property name="text">
+      <string>År:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QLineEdit" name="line_title"/>
+   </item>
+   <item row="15" column="1">
+    <widget class="QLabel" name="label_cover">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="label_title">
+     <property name="text">
+      <string>Titel:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="1">
+    <widget class="QLineEdit" name="line_buy_price"/>
+   </item>
+   <item row="9" column="0">
+    <widget class="QLabel" name="label_row">
+     <property name="text">
+      <string>Hylla:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QLabel" name="label_author">
+     <property name="text">
+      <string>Författare:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="10" column="1">
+    <widget class="QLineEdit" name="lineEdit"/>
+   </item>
+  </layout>
+  <action name="action_lookup_book">
+   <property name="text">
+    <string>lookup_book</string>
+   </property>
+  </action>
+  <action name="action_close_dialog">
+   <property name="text">
+    <string>close_dialog</string>
+   </property>
+  </action>
+  <action name="action_add_book">
+   <property name="text">
+    <string>add_book</string>
+   </property>
+  </action>
+  <action name="action_toggle_sale">
+   <property name="text">
+    <string>toggle_sale</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>line_isbn</sender>
+   <signal>returnPressed()</signal>
+   <receiver>Dialog</receiver>
+   <slot>lookup_book()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>158</x>
+     <y>28</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>65</x>
+     <y>3</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_close</sender>
+   <signal>clicked()</signal>
+   <receiver>Dialog</receiver>
+   <slot>close_dialog()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>50</x>
+     <y>587</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>299</x>
+     <y>306</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_save</sender>
+   <signal>clicked()</signal>
+   <receiver>Dialog</receiver>
+   <slot>add_book()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>344</x>
+     <y>587</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>299</x>
+     <y>306</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>sale_toggle</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Dialog</receiver>
+   <slot>toggle_sale()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>22</x>
+     <y>351</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>25</x>
+     <y>397</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>lookup_book()</slot>
+  <slot>add_book()</slot>
+  <slot>close_dialog()</slot>
+  <slot>toggle_sale()</slot>
+ </slots>
+</ui>
