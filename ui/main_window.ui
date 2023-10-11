@@ -15,7 +15,119 @@
   </property>
   <widget class="QWidget" name="central_widget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="1" column="3">
+    <item row="4" column="2">
+     <widget class="QGroupBox" name="group_below">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>35</height>
+       </size>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <widget class="QPushButton" name="button_delete_book">
+       <property name="geometry">
+        <rect>
+         <x>370</x>
+         <y>0</y>
+         <width>141</width>
+         <height>34</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>141</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>117</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Ta bort alla exemplar</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="button_sell_book">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>910</x>
+         <y>0</y>
+         <width>110</width>
+         <height>34</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>110</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>84</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Sälj markerad</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="button_edit">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>141</width>
+         <height>34</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Redigera markerad</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="button_delete_one">
+       <property name="geometry">
+        <rect>
+         <x>230</x>
+         <y>0</y>
+         <width>141</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Ta bort ett exemplar</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="button_add_one">
+       <property name="geometry">
+        <rect>
+         <x>660</x>
+         <y>0</y>
+         <width>151</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Lägg till ett exemplar</string>
+       </property>
+      </widget>
+     </widget>
+    </item>
+    <item row="2" column="2">
+     <widget class="QTableView" name="table_inventory">
+      <property name="sortingEnabled">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="3">
      <widget class="QGroupBox" name="group_right">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -65,93 +177,23 @@
       </widget>
      </widget>
     </item>
-    <item row="3" column="2">
-     <widget class="QGroupBox" name="group_below">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>35</height>
-       </size>
-      </property>
-      <property name="title">
-       <string/>
-      </property>
-      <widget class="QPushButton" name="button_delete_book">
-       <property name="geometry">
-        <rect>
-         <x>790</x>
-         <y>0</y>
-         <width>117</width>
-         <height>34</height>
-        </rect>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>110</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>117</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Ta bort markerad</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="button_sell_book">
-       <property name="geometry">
-        <rect>
-         <x>910</x>
-         <y>0</y>
-         <width>110</width>
-         <height>34</height>
-        </rect>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>110</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>84</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Sälj markerad</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="button_edit">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>141</width>
-         <height>34</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Redigera markerad</string>
-       </property>
-      </widget>
-     </widget>
-    </item>
-    <item row="1" column="2">
-     <widget class="QTableView" name="table_inventory">
-      <property name="sortingEnabled">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
     <item row="0" column="2">
      <widget class="QLineEdit" name="line_search">
       <property name="placeholderText">
        <string>Sök</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="3">
+     <widget class="QLineEdit" name="line_seller">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="placeholderText">
+       <string>Säljarens Namn</string>
       </property>
      </widget>
     </item>
@@ -163,7 +205,7 @@
      <x>0</x>
      <y>0</y>
      <width>1168</width>
-     <height>27</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_file">
@@ -199,6 +241,21 @@
     <string>sell_book</string>
    </property>
   </action>
+  <action name="action_delete_one">
+   <property name="text">
+    <string>delete_one</string>
+   </property>
+  </action>
+  <action name="action_add_one">
+   <property name="text">
+    <string>add_one</string>
+   </property>
+  </action>
+  <action name="action_toggle">
+   <property name="text">
+    <string>toggle</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections>
@@ -225,7 +282,7 @@
    <slot>delete_book()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>847</x>
+     <x>427</x>
      <y>746</y>
     </hint>
     <hint type="destinationlabel">
@@ -266,6 +323,54 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>button_delete_one</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>delete_one()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>313</x>
+     <y>744</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>595</x>
+     <y>773</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_add_one</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>add_one()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>771</x>
+     <y>753</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>809</x>
+     <y>777</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>line_seller</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>toggle()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1080</x>
+     <y>45</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>583</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>open_dialog()</slot>
@@ -274,5 +379,8 @@
   <slot>add_book()</slot>
   <slot>search()</slot>
   <slot>sell_book()</slot>
+  <slot>delete_one()</slot>
+  <slot>add_one()</slot>
+  <slot>toggle()</slot>
  </slots>
 </ui>
