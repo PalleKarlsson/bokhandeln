@@ -1,3 +1,5 @@
-pychange-venv/
+bokhandeln-venv/
 .mypy_cache/
 __pycache__/
+.vscode/
+.env
